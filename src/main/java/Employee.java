@@ -1,8 +1,8 @@
-//     Создайте класс Employee с полями name и salary.
-//     Создайте подклассы Manager и Developer, которые наследуют от Employee.
+//     Создайте класс src.main.java.Employee с полями name и salary.
+//     Создайте подклассы src.main.java.Manager и src.main.java.Developer, которые наследуют от src.main.java.Employee.
 //     Добавьте метод work() в каждом классе, который выводит сообщение о работе сотрудника.
-//     Создайте абстрактный класс Shape с абстрактным методом draw().
-//     Создайте подклассы Circle и Rectangle, которые реализуют метод draw().
+//     Создайте абстрактный класс src.main.java.Shape с абстрактным методом draw().
+//     Создайте подклассы src.main.java.Circle и src.main.java.Rectangle, которые реализуют метод draw().
 //     В методе draw() выведите сообщение о том, что фигура рисуется.
 //     Отравить в комментарий ссылку на merge request, в котором указаны доработки
 
