@@ -1,9 +1,9 @@
 package pages.elements;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.Duration;
+
 
 public class RadioButton extends Field {
     private final SelenideElement element;

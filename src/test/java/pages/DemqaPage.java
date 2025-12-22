@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import pages.elements.*;
 import static com.codeborne.selenide.Selenide.*;
 
+
 public class DemqaPage {
     public final Input firstName = new Input($("#firstName"));
     public final Input lastName = new Input($("#lastName"));

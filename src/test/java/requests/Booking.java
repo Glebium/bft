@@ -2,14 +2,12 @@ package requests;
 
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import responses.ResponseCreateBookingModel;
-import responses.ResponseUpdateOrGetBookingModel;
+
 
 @Data
 @AllArgsConstructor
@@ -55,7 +53,7 @@ public class Booking {
     }
 
     @Step("Выполнение запроса на создание записи")
-    public ResponseCreateBookingModel create(
+    public Response create(
             String firstname,
             String lastname,
             Integer totalprice,
@@ -64,7 +62,7 @@ public class Booking {
             String checkout,
             String additionalneeds
     ) {
-        ResponseCreateBookingModel response = RestAssured
+        Response response = RestAssured
             .given()
             .baseUri("https://restful-booker.herokuapp.com")
             .header("Content-Type", "application/json")
@@ -78,18 +76,15 @@ public class Booking {
                     additionalneeds)
             )
             .when()
-            .post("/booking")
-            .then()
-            .statusCode(200)
-            .contentType(ContentType.JSON)
-            .extract().body().as(ResponseCreateBookingModel.class);
-
-        bookingid = response.getBookingid();
+            .post("/booking");
+        if (response.statusCode() == 200) {
+            bookingid = response.as(ResponseCreateBookingModel.class).getBookingid();
+        }
         return response;
     }
 
     @Step("Выполнение запроса на обновление записи")
-    public ResponseUpdateOrGetBookingModel update(
+    public Response update(
             String firstname,
             String lastname,
             Integer totalprice,
@@ -98,7 +93,7 @@ public class Booking {
             String checkout,
             String additionalneeds
     ) {
-        ResponseUpdateOrGetBookingModel response = RestAssured
+        Response response = RestAssured
                 .given()
                 .baseUri("https://restful-booker.herokuapp.com")
                 .header("Content-Type", "application/json")
@@ -113,39 +108,30 @@ public class Booking {
                         additionalneeds)
                 )
                 .when()
-                .put("/booking/" + bookingid)
-                .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .extract().body().as(ResponseUpdateOrGetBookingModel.class);
+                .put("/booking/" + bookingid);
         return response;
     }
 
     @Step("Выполнение запроса на получение записи")
-    public ResponseUpdateOrGetBookingModel get(Integer id) {
-        ResponseUpdateOrGetBookingModel response = RestAssured
+    public Response get(Integer id) {
+        Response response = RestAssured
                 .given()
                 .baseUri("https://restful-booker.herokuapp.com")
                 .header("Accept", "application/json")
                 .when()
-                .get("/booking/" + id)
-                .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .extract().body().as(ResponseUpdateOrGetBookingModel.class);
+                .get("/booking/" + id);
         return response;
     }
 
     @Step("Выполнение запроса на удаление записи")
-    public ValidatableResponse delete(Integer id) {
-        ValidatableResponse response = RestAssured
+    public Response delete(Integer id) {
+
+        Response response = RestAssured
                 .given()
                 .baseUri("https://restful-booker.herokuapp.com")
                 .header("Cookie", "token=" + token)
                 .when()
-                .delete("/booking/" + id)
-                .then()
-                .statusCode(201);
+                .delete("/booking/" + id);
         return response;
     }
 }

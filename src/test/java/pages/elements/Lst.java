@@ -1,15 +1,13 @@
 package pages.elements;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import pages.DemqaPage;
 import pages.DemqaPage.StateItems;
 import pages.DemqaPage.CityItems;
-
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Lst {

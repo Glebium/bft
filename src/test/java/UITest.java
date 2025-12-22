@@ -7,7 +7,6 @@ import settings.BaseTest;
 import java.io.File;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.DemqaPage.StateItems.UTTAR_PRADESH;
 import static pages.DemqaPage.StateItems.HARYANA;
@@ -35,7 +34,6 @@ public class UITest extends BaseTest {
 
     @Test
     @Description("Проверка заполнения формы и отображения результатов в popup таблице")
-    @Disabled
     public void testPopupTable() {
         demqaPage.open();
         // Заполнение формы
@@ -67,7 +65,6 @@ public class UITest extends BaseTest {
 
     @Test
     @Description("Проверка валидации полей при незаполнении формы")
-    @Disabled
     public void testFormFieldsBorderColor() {
         demqaPage.open();
         demqaPage.submitButton.click();
